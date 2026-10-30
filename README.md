@@ -1,6 +1,6 @@
 ## Bayes Theorem App - Security Operations Center Analysis
 
-# Bayes in the SOC: The Ultimate Guide to Busting False Alarms
+# Bayes in the SOC: A Simple Guide to Busting False Alarms
 
 ![Bayes in the SOC App Preview](preview.png)
 
