@@ -1,4 +1,4 @@
-Bayes Theorem App - Security Operations Center Analysis
+## Bayes Theorem App - Security Operations Center Analysis
 
 ### Section 1: Environment Baseline (The Setup)
 
