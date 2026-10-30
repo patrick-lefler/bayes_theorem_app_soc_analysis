@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Bayes in the SOC: Alert Triage & Signal Detection</title>
   <style>
-    /* Reset & Base Setup (Zero external dependency required) */
+    /* Reset & Base Setup */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -276,7 +276,7 @@
 
     /* Evidence Action Buttons */
     .btn-action {
-      background-color: rgba(76, 5, 25, 0.35); /* rose tint */
+      background-color: rgba(76, 5, 25, 0.35);
       border: 1px solid rgba(159, 18, 57, 0.5);
       border-radius: 8px;
       padding: 10px;
@@ -287,19 +287,13 @@
       gap: 3px;
       transition: all 0.15s ease;
     }
-    .btn-action:hover {
-      background-color: rgba(136, 19, 55, 0.5);
-    }
-    .btn-action:active {
-      transform: scale(0.98);
-    }
+    .btn-action:hover { background-color: rgba(136, 19, 55, 0.5); }
+    .btn-action:active { transform: scale(0.98); }
     .btn-action.exonerate {
-      background-color: rgba(12, 44, 75, 0.35); /* sky tint */
+      background-color: rgba(12, 44, 75, 0.35);
       border-color: rgba(3, 105, 161, 0.5);
     }
-    .btn-action.exonerate:hover {
-      background-color: rgba(14, 116, 144, 0.5);
-    }
+    .btn-action.exonerate:hover { background-color: rgba(14, 116, 144, 0.5); }
     .btn-action-top {
       display: flex;
       justify-content: space-between;
@@ -310,18 +304,14 @@
       font-weight: 600;
       color: #fda4af;
     }
-    .btn-action.exonerate .btn-action-name {
-      color: #7dd3fc;
-    }
+    .btn-action.exonerate .btn-action-name { color: #7dd3fc; }
     .btn-action-lr {
       font-size: 11px;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       font-weight: 700;
       color: #f43f5e;
     }
-    .btn-action.exonerate .btn-action-lr {
-      color: #38bdf8;
-    }
+    .btn-action.exonerate .btn-action-lr { color: #38bdf8; }
     .btn-action-desc {
       font-size: 10px;
       color: rgba(248, 250, 252, 0.6);
@@ -332,7 +322,7 @@
     .audit-container {
       max-height: 140px;
       overflow-y: auto;
-      padding-right: 14px; /* clearance from scrollbar thumb */
+      padding-right: 14px;
       display: flex;
       flex-direction: column;
       gap: 6px;
@@ -346,10 +336,7 @@
       padding-bottom: 6px;
       border-bottom: 1px solid rgba(30, 41, 59, 0.5);
     }
-    .audit-left {
-      display: flex;
-      flex-direction: column;
-    }
+    .audit-left { display: flex; flex-direction: column; }
     .audit-step { color: #f1f5f9; font-weight: 600; }
     .audit-detail { font-size: 10px; color: #64748b; }
     .audit-right {
@@ -362,20 +349,9 @@
     .audit-prob { color: #34d399; font-weight: 600; }
 
     /* Custom Scrollbar */
-    .audit-container::-webkit-scrollbar {
-      width: 6px;
-    }
-    .audit-container::-webkit-scrollbar-track {
-      background: #020617;
-      border-radius: 4px;
-    }
-    .audit-container::-webkit-scrollbar-thumb {
-      background: #334155;
-      border-radius: 4px;
-    }
-    .audit-container::-webkit-scrollbar-thumb:hover {
-      background: #475569;
-    }
+    .audit-container::-webkit-scrollbar { width: 6px; }
+    .audit-container::-webkit-scrollbar-track { background: #020617; border-radius: 4px; }
+    .audit-container::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
 
     /* Guide & Documentation Tab Styles */
     .docs-section {
@@ -439,7 +415,7 @@
       <button id="tabBtnDocs" class="tab-btn" onclick="switchTab('docs')">Guide & Math</button>
     </nav>
 
-    <!-- ==================== TAB 1: SIMULATOR ==================== -->
+    <!-- TAB 1: SIMULATOR -->
     <div id="viewSim" style="display: flex; flex-direction: column; gap: 16px;">
       <!-- Base Configuration Card -->
       <section class="card">
@@ -587,19 +563,15 @@
         </div>
       </section>
 
-      <!-- Audit Ledger / Trajectory History -->
+      <!-- Audit Ledger -->
       <section class="card">
         <span class="card-title">Audit Ledger (Log-Odds Chain)</span>
-        <div id="auditLog" class="audit-container">
-          <!-- Rendered dynamically -->
-        </div>
+        <div id="auditLog" class="audit-container"></div>
       </section>
     </div>
 
-    <!-- ==================== TAB 2: GUIDE & MATH ==================== -->
+    <!-- TAB 2: GUIDE & MATH -->
     <div id="viewDocs" style="display: none; flex-direction: column; gap: 16px;">
-      
-      <!-- Mystery / Intuition Card -->
       <section class="card docs-section">
         <h2 class="docs-h2">1. The Mystery: The Fire Alarm Paradox</h2>
         <p>
@@ -613,7 +585,6 @@
         </p>
       </section>
 
-      <!-- Visual Guide Card -->
       <section class="card docs-section">
         <h2 class="docs-h2">2. What the 10,000-Dot Canvas Shows</h2>
         <p>
@@ -629,7 +600,6 @@
         </p>
       </section>
 
-      <!-- The Math Card -->
       <section class="card docs-section">
         <h2 class="docs-h2">3. The Math: Bayes' Odds Formulation</h2>
         <p>
@@ -664,7 +634,6 @@
         </ul>
       </section>
 
-      <!-- Operational Decision Gradient Card -->
       <section class="card docs-section">
         <h2 class="docs-h2">4. The Operational Decision Gradient</h2>
         <p>
@@ -674,15 +643,13 @@
           <li><strong>Noise Floor (&lt; 1%):</strong> Probability is negligible. The cost of an analyst checking the computer exceeds the risk. Auto-dismiss!</li>
           <li><strong>Information Demand (1% - 50%):</strong> Elevated signal, but unconfirmed. Do not disconnect the user yet; run quick forensic checks!</li>
           <li><strong>Defensive Intervention (50% - 85%):</strong> Parity crossed. The risk of uncontained ransomware spread now exceeds temporary user disruption. Quarantine the machine!</li>
-          <li><strong>Active Incident (&gt; 85%):</strong> Breach confirmed beyond reasonable operational doubt. Launch full incident response.</li>
+          <li><strong>Active Incident (&gt; 85%):</strong> Breach confirmed beyond reasonable doubt. Launch full incident response.</li>
         </ul>
       </section>
-
     </div>
   </main>
 
   <script>
-    // Tab Switching Logic
     function switchTab(tabId) {
       const viewSim = document.getElementById('viewSim');
       const viewDocs = document.getElementById('viewDocs');
@@ -694,7 +661,6 @@
         viewDocs.style.display = 'none';
         btnSim.classList.add('active');
         btnDocs.classList.remove('active');
-        // Redraw matrix canvas in case container size changed
         setTimeout(drawMatrix, 50);
       } else {
         viewSim.style.display = 'none';
@@ -704,10 +670,9 @@
       }
     }
 
-    // State variables
-    let baseRate = 0.001;      // 0.1% prior base rate
-    let tpr = 0.95;            // 95% sensitivity
-    let fpr = 0.01;            // 1.0% false positive rate
+    let baseRate = 0.001;
+    let tpr = 0.95;
+    let fpr = 0.01;
     
     let priorOdds = 0;
     let initialAlertLR = 0;
@@ -715,18 +680,29 @@
     let stepCount = 0;
     let auditHistory = [];
 
-    // Canvas matrix state
     const TOTAL_EVENTS = 10000;
     let eventPopulation = [];
 
+    function syncParams() {
+      const priorElem = document.getElementById('priorSelect');
+      const tprElem = document.getElementById('sensorTPR');
+      const fprElem = document.getElementById('sensorFPR');
+
+      baseRate = priorElem ? parseFloat(priorElem.value) : 0.001;
+      tpr = tprElem ? parseFloat(tprElem.value) / 100 : 0.95;
+      fpr = fprElem ? parseFloat(fprElem.value) / 100 : 0.01;
+
+      // Defensive guardrails
+      if (isNaN(baseRate) || baseRate <= 0) baseRate = 0.001;
+      if (isNaN(tpr) || tpr <= 0) tpr = 0.95;
+      if (isNaN(fpr) || fpr <= 0) fpr = 0.01;
+    }
+
     function initEnvironment() {
-      baseRate = parseFloat(document.getElementById('priorSelect').value);
-      tpr = parseFloat(document.getElementById('sensorTPR').value) / 100;
-      fpr = parseFloat(document.getElementById('sensorFPR').value) / 100;
+      syncParams();
 
       priorOdds = baseRate / (1 - baseRate);
       initialAlertLR = tpr / fpr;
-      
       currentOdds = priorOdds * initialAlertLR;
       stepCount = 1;
       
@@ -744,8 +720,12 @@
     }
 
     function resetAlertOnly() {
+      syncParams();
+      priorOdds = baseRate / (1 - baseRate);
+      initialAlertLR = tpr / fpr;
       currentOdds = priorOdds * initialAlertLR;
       stepCount = 1;
+
       const pInitial = (currentOdds / (1 + currentOdds));
       auditHistory = [{
         step: "S1: Initial Alert Trigger",
@@ -779,23 +759,15 @@
       }
     }
 
+    // Direct in-place generation: guarantees 2D scattering across all 10,000 dots
     function generatePopulation() {
-      eventPopulation = [];
-      const expectedMalicious = Math.round(TOTAL_EVENTS * baseRate);
-      const expectedBenign = TOTAL_EVENTS - expectedMalicious;
+      syncParams();
+      eventPopulation = new Array(TOTAL_EVENTS);
 
-      for (let i = 0; i < expectedMalicious; i++) {
-        const triggers = Math.random() < tpr;
-        eventPopulation.push({ malicious: true, alert: triggers });
-      }
-      for (let i = expectedBenign; i < expectedBenign; i++) {
-        const triggers = Math.random() < fpr;
-        eventPopulation.push({ malicious: false, alert: triggers });
-      }
-
-      for (let i = eventPopulation.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [eventPopulation[i], eventPopulation[j]] = [eventPopulation[j], eventPopulation[i]];
+      for (let i = 0; i < TOTAL_EVENTS; i++) {
+        const isMalicious = Math.random() < baseRate;
+        const isAlert = isMalicious ? (Math.random() < tpr) : (Math.random() < fpr);
+        eventPopulation[i] = { malicious: isMalicious, alert: isAlert };
       }
 
       drawMatrix();
@@ -810,14 +782,14 @@
       const width = container.clientWidth || 430;
       const height = container.clientHeight || 200;
       
-      canvas.width = width * 2; // retina scaling
+      canvas.width = width * 2;
       canvas.height = height * 2;
       ctx.scale(2, 2);
 
       ctx.clearRect(0, 0, width, height);
 
       const cols = 125;
-      const rows = 80; // 125 * 80 = 10,000 points
+      const rows = 80;
       const cellW = width / cols;
       const cellH = height / rows;
 
@@ -834,15 +806,15 @@
         if (ev && ev.alert) {
           if (ev.malicious) {
             trueAlerts++;
-            ctx.fillStyle = '#f43f5e'; // rose-500
+            ctx.fillStyle = '#f43f5e';
             ctx.fillRect(x - 0.5, y - 0.5, Math.max(2.5, cellW + 1), Math.max(2.5, cellH + 1));
           } else {
             falseAlerts++;
-            ctx.fillStyle = '#fbbf24'; // amber-400
+            ctx.fillStyle = '#fbbf24';
             ctx.fillRect(x, y, Math.max(1.8, cellW), Math.max(1.8, cellH));
           }
         } else {
-          ctx.fillStyle = '#1e293b'; // slate-800
+          ctx.fillStyle = '#1e293b';
           ctx.fillRect(x + 0.3, y + 0.3, Math.max(1, cellW - 0.6), Math.max(1, cellH - 0.6));
         }
       }
@@ -850,20 +822,26 @@
       const totalAlerts = trueAlerts + falseAlerts;
       const noisePct = totalAlerts > 0 ? ((falseAlerts / totalAlerts) * 100).toFixed(1) : '0.0';
 
-      document.getElementById('statAlertCount').innerText = totalAlerts;
-      document.getElementById('statAlertBreakdown').innerText = `${trueAlerts} True | ${falseAlerts} False`;
-      document.getElementById('statNoiseRatio').innerText = `${noisePct}%`;
+      const alertCountElem = document.getElementById('statAlertCount');
+      const breakdownElem = document.getElementById('statAlertBreakdown');
+      const noiseElem = document.getElementById('statNoiseRatio');
+
+      if (alertCountElem) alertCountElem.innerText = totalAlerts;
+      if (breakdownElem) breakdownElem.innerText = `${trueAlerts} True | ${falseAlerts} False`;
+      if (noiseElem) noiseElem.innerText = `${noisePct}%`;
     }
 
     function render() {
       const p = currentOdds / (1 + currentOdds);
       const pPct = p * 100;
 
-      document.getElementById('statCurrentP').innerText = pPct < 0.1 ? '< 0.1%' : (pPct > 99.9 ? '> 99.9%' : `${pPct.toFixed(1)}%`);
-      document.getElementById('statOddsRatio').innerText = `Odds: ${formatOdds(currentOdds)}`;
+      const pElem = document.getElementById('statCurrentP');
+      const oddsElem = document.getElementById('statOddsRatio');
+      if (pElem) pElem.innerText = pPct < 0.1 ? '< 0.1%' : (pPct > 99.9 ? '> 99.9%' : `${pPct.toFixed(1)}%`);
+      if (oddsElem) oddsElem.innerText = `Odds: ${formatOdds(currentOdds)}`;
 
       const bar = document.getElementById('gradientBar');
-      bar.style.width = `${Math.min(100, Math.max(1.5, pPct))}%`;
+      if (bar) bar.style.width = `${Math.min(100, Math.max(1.5, pPct))}%`;
 
       const actionLabel = document.getElementById('actionLabel');
       const postureIcon = document.getElementById('postureIcon');
@@ -871,51 +849,49 @@
       const postureDesc = document.getElementById('postureDesc');
 
       if (p < 0.01) {
-        actionLabel.innerText = "Noise Floor Cleared";
-        actionLabel.style.color = "#34d399";
-        postureIcon.innerText = "🛡️";
-        postureTitle.innerText = "Autonomous Ticket Dismissal";
-        postureDesc.innerText = `Breach probability (${pPct.toFixed(2)}%) is below enterprise risk tolerance. Investigation cost exceeds expected loss. Safe to clear.`;
+        if (actionLabel) { actionLabel.innerText = "Noise Floor Cleared"; actionLabel.style.color = "#34d399"; }
+        if (postureIcon) postureIcon.innerText = "🛡️";
+        if (postureTitle) postureTitle.innerText = "Autonomous Ticket Dismissal";
+        if (postureDesc) postureDesc.innerText = `Breach probability (${pPct.toFixed(2)}%) is below enterprise risk tolerance. Investigation cost exceeds expected loss. Safe to clear.`;
       } else if (p < 0.50) {
-        actionLabel.innerText = "Information Demand State";
-        actionLabel.style.color = "#fbbf24";
-        postureIcon.innerText = "🔍";
-        postureTitle.innerText = "Information Collection Optimal";
-        postureDesc.innerText = `Threat signal is elevated (${pPct.toFixed(1)}%), but prior base rate prevents hasty containment. Gather forensic artifacts before disrupting host.`;
+        if (actionLabel) { actionLabel.innerText = "Information Demand State"; actionLabel.style.color = "#fbbf24"; }
+        if (postureIcon) postureIcon.innerText = "🔍";
+        if (postureTitle) postureTitle.innerText = "Information Collection Optimal";
+        if (postureDesc) postureDesc.innerText = `Threat signal is elevated (${pPct.toFixed(1)}%), but prior base rate prevents hasty containment. Gather forensic artifacts before disrupting host.`;
       } else if (p < 0.85) {
-        actionLabel.innerText = "Defensive Intervention Parity";
-        actionLabel.style.color = "#fb7185";
-        postureIcon.innerText = "⚡";
-        postureTitle.innerText = "Precautionary Host Isolation Warranted";
-        postureDesc.innerText = `Breach probability (${pPct.toFixed(1)}%) crosses operational parity. Cost of uncontained lateral spread far exceeds temporary user friction.`;
+        if (actionLabel) { actionLabel.innerText = "Defensive Intervention Parity"; actionLabel.style.color = "#fb7185"; }
+        if (postureIcon) postureIcon.innerText = "⚡";
+        if (postureTitle) postureTitle.innerText = "Precautionary Host Isolation Warranted";
+        if (postureDesc) postureDesc.innerText = `Breach probability (${pPct.toFixed(1)}%) crosses operational parity. Cost of uncontained lateral spread far exceeds temporary user friction.`;
       } else {
-        actionLabel.innerText = "Terminal Certainty / Active Incident";
-        actionLabel.style.color = "#f43f5e";
-        postureIcon.innerText = "🚨";
-        postureTitle.innerText = "Incident Response Escalation";
-        postureDesc.innerText = `Breach confirmed beyond reasonable doubt (${pPct.toFixed(1)}%). Sever network connectivity, preserve memory dump, and activate IR tier.`;
+        if (actionLabel) { actionLabel.innerText = "Terminal Certainty / Active Incident"; actionLabel.style.color = "#f43f5e"; }
+        if (postureIcon) postureIcon.innerText = "🚨";
+        if (postureTitle) postureTitle.innerText = "Incident Response Escalation";
+        if (postureDesc) postureDesc.innerText = `Breach confirmed beyond reasonable doubt (${pPct.toFixed(1)}%). Sever network connectivity, preserve memory dump, and activate IR tier.`;
       }
 
       const auditLog = document.getElementById('auditLog');
-      auditLog.innerHTML = auditHistory.map(entry => `
-        <div class="audit-row">
-          <div class="audit-left">
-            <span class="audit-step">${entry.step}</span>
-            <span class="audit-detail">${entry.detail}</span>
+      if (auditLog) {
+        auditLog.innerHTML = auditHistory.map(entry => `
+          <div class="audit-row">
+            <div class="audit-left">
+              <span class="audit-step">${entry.step}</span>
+              <span class="audit-detail">${entry.detail}</span>
+            </div>
+            <div class="audit-right">
+              <span>P: <span class="audit-prob">${entry.postP}</span></span>
+              <span style="color: #334155;">|</span>
+              <span style="color: #94a3b8;">${entry.oddsStr}</span>
+            </div>
           </div>
-          <div class="audit-right">
-            <span>P: <span class="audit-prob">${entry.postP}</span></span>
-            <span style="color: #334155;">|</span>
-            <span style="color: #94a3b8;">${entry.oddsStr}</span>
-          </div>
-        </div>
-      `).join('');
+        `).join('');
+      }
     }
 
     document.getElementById('resetBtn').addEventListener('click', initEnvironment);
     document.getElementById('priorSelect').addEventListener('change', initEnvironment);
-    document.getElementById('sensorTPR').addEventListener('change', initEnvironment);
-    document.getElementById('sensorFPR').addEventListener('change', initEnvironment);
+    document.getElementById('sensorTPR').addEventListener('input', initEnvironment);
+    document.getElementById('sensorFPR').addEventListener('input', initEnvironment);
     document.getElementById('resampleBtn').addEventListener('click', generatePopulation);
     document.getElementById('resetAlertBtn').addEventListener('click', resetAlertOnly);
 
